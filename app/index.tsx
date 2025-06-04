@@ -1,4 +1,5 @@
 import { LinearGradient } from "expo-linear-gradient";
+import { router } from "expo-router";
 import {
   Dimensions,
   Image,
@@ -106,7 +107,9 @@ export default function Index() {
             style={{ position: "absolute", right: 0, top: 0 }}
           />
           <TouchableOpacity
-            onPress={() => {}}
+            onPress={() => {
+              router.navigate("/login");
+            }}
             style={{
               width: "100%",
               flexDirection: "row",
@@ -123,7 +126,12 @@ export default function Index() {
           </TouchableOpacity>
         </LinearGradient>
 
-        <TouchableOpacity style={styled.signup}>
+        <TouchableOpacity
+          style={styled.signup}
+          onPress={() => {
+            router.navigate("/signup");
+          }}
+        >
           <Image
             source={require("../assets/images/signupdes.png")}
             style={{
