@@ -1,6 +1,6 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
-import React from "react";
+import React, { useRef, useState } from "react";
 import {
   Dimensions,
   Image,
@@ -35,13 +35,6 @@ const styled = StyleSheet.create({
     textAlign: "center",
     textTransform: "capitalize",
     color: "rgba(58, 58, 58, 1)",
-  },
-  title: {
-    color: "rgba(58, 58, 58, 1)",
-    fontWeight: "400",
-    fontSize: 14,
-    textAlign: "center",
-    textTransform: "capitalize",
   },
   body: {
     width: "100%",
@@ -98,6 +91,25 @@ const styled = StyleSheet.create({
 });
 
 export default function otp() {
+  const [otp, setOtp] = useState(["", "", "", ""]);
+  const inputs = useRef<TextInput[]>([]);
+
+  const handleChange = (text: string, index: number) => {
+    const newOtp = [...otp];
+    newOtp[index] = text;
+    setOtp(newOtp);
+
+    if (text && index < inputs.current.length - 1) {
+      inputs.current[index + 1]?.focus();
+    }
+  };
+
+  const handleKeyPress = (e: any, index: number) => {
+    if (e.nativeEvent.key === "Backspace" && otp[index] === "" && index > 0) {
+      inputs.current[index - 1]?.focus();
+    }
+  };
+
   return (
     <View style={styled.main}>
       <View>
@@ -119,14 +131,17 @@ export default function otp() {
           </Text>
         </View>
 
-        {/* ✅ OTP INPUT BOXES */}
         <View style={styled.otpContainer}>
-          {[0, 1, 2, 3].map((_, index) => (
+          {otp.map((digit, index) => (
             <TextInput
               key={index}
+              ref={(el) => (inputs.current[index] = el!)}
               style={styled.otpInput}
-              maxLength={1}
+              value={digit}
+              onChangeText={(text) => handleChange(text.slice(-1), index)}
+              onKeyPress={(e) => handleKeyPress(e, index)}
               keyboardType="number-pad"
+              maxLength={1}
               returnKeyType="done"
             />
           ))}
@@ -163,6 +178,7 @@ export default function otp() {
           />
           <TouchableOpacity
             onPress={() => {
+              console.log("OTP Entered:", otp.join(""));
               router.navigate("/otp");
             }}
             style={{
@@ -173,7 +189,7 @@ export default function otp() {
             }}
             activeOpacity={0.7}
           >
-            <Text style={styled.loginText}>Get OTP</Text>
+            <Text style={styled.loginText}>Verify</Text>
           </TouchableOpacity>
         </LinearGradient>
       </View>

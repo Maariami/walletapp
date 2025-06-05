@@ -40,7 +40,6 @@ const styled = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     overflow: "hidden",
-
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: 24,
@@ -55,7 +54,6 @@ const styled = StyleSheet.create({
   signup: {
     position: "relative",
     overflow: "hidden",
-
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
