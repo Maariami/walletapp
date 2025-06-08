@@ -14,6 +14,7 @@ const styled = StyleSheet.create({
     paddingInline: 35,
     backgroundColor: "rgba(255, 255, 255, 1)",
     overflow: "scroll",
+    paddingBottom: 110,
   },
 
   inputs: {
