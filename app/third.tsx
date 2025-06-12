@@ -107,7 +107,7 @@ export default function second() {
         />
         <TouchableOpacity
           onPress={() => {
-            router.navigate("/");
+            router.navigate("/wallet");
           }}
           style={{
             width: "100%",
