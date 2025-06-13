@@ -1,6 +1,7 @@
 import { router } from "expo-router";
 import React from "react";
 import {
+  Dimensions,
   Image,
   ImageStyle,
   StyleSheet,
@@ -9,6 +10,7 @@ import {
 } from "react-native";
 
 type BarType = "wallet" | "notification" | "profile";
+const SCREEN_WIDTH = Dimensions.get("window").width;
 
 const ICON_SETS: Record<BarType, any[]> = {
   wallet: [
@@ -55,12 +57,12 @@ interface BarProps {
 
 const styled = StyleSheet.create({
   main: {
-    position: "fixed",
+    position: "absolute",
     bottom: 0,
     left: 0,
     flexDirection: "row",
-    width: "100%",
-    height: 108,
+    width: SCREEN_WIDTH,
+    height: 120,
     paddingHorizontal: 69,
     paddingVertical: 35,
     justifyContent: "space-between",

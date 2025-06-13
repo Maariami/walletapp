@@ -3,8 +3,11 @@ import { router } from "expo-router";
 import { Formik } from "formik";
 import React, { useState } from "react";
 import {
+  Animated,
   Dimensions,
   Image,
+  KeyboardAvoidingView,
+  Platform,
   StyleSheet,
   Text,
   TextInput,
@@ -14,7 +17,6 @@ import {
 import * as Yup from "yup";
 
 const { width: screenWidth } = Dimensions.get("window");
-
 const DESIGN_WIDTH = 393;
 const DESIGN_HEIGHT = 320;
 const calculatedHeight = (DESIGN_HEIGHT / DESIGN_WIDTH) * screenWidth;
@@ -79,6 +81,7 @@ const styled = StyleSheet.create({
     textTransform: "uppercase",
     marginHorizontal: 40,
     marginTop: 25,
+    marginBottom: 30,
   },
   login: {
     position: "relative",
@@ -119,136 +122,160 @@ const validationSchema = Yup.object().shape({
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const [isInputFocused, setIsInputFocused] = useState(false);
+
+  const shiftStyle = {
+    transform: [{ translateY: isInputFocused ? -200 : 0 }],
+  };
 
   return (
-    <View style={styled.main}>
-      <Image
-        style={{ width: screenWidth, height: calculatedHeight }}
-        source={require("../assets/images/logosmaller.png")}
-      />
-      <Text style={styled.header}>Log In</Text>
-      <Formik
-        initialValues={{ email: "", password: "" }}
-        validationSchema={validationSchema}
-        validateOnChange
-        validateOnBlur
-        onSubmit={() => {
-          router.navigate("/first");
-        }}
-      >
-        {({
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          values,
-          errors,
-          touched,
-        }) => (
-          <>
-            <View style={styled.inputs}>
-              {/* Email Field */}
-              <View style={styled.input}>
-                <Text style={styled.title}>Email Address</Text>
-                <View
-                  style={[
-                    styled.inputbox,
-                    touched.email &&
-                      errors.email && { borderBottomColor: "red" },
-                  ]}
-                >
-                  <TextInput
-                    placeholder="email"
-                    autoCapitalize="none"
-                    style={{ width: "100%", outline: "none" }}
-                    onChangeText={handleChange("email")}
-                    onBlur={handleBlur("email")}
-                    value={values.email}
-                  />
-                  <Image
-                    style={{
-                      width: 18,
-                      height: 13,
-                      opacity: !errors.email && values.email ? 1 : 0.2,
-                    }}
-                    source={require("../assets/images/checkmark.png")}
-                  />
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : undefined}
+    >
+      <Animated.View style={[styled.main, shiftStyle]}>
+        <Image
+          style={{ width: screenWidth, height: calculatedHeight }}
+          source={require("../assets/images/logosmaller.png")}
+        />
+        <Text style={styled.header}>log In</Text>
+
+        <Formik
+          initialValues={{ email: "", password: "" }}
+          validationSchema={validationSchema}
+          validateOnChange
+          validateOnBlur
+          onSubmit={() => {
+            router.navigate("/first");
+          }}
+        >
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            values,
+            errors,
+            touched,
+          }) => (
+            <>
+              <View style={styled.inputs}>
+                {/* Email Field */}
+                <View style={styled.input}>
+                  <Text style={styled.title}>Email Address</Text>
+                  <View
+                    style={[
+                      styled.inputbox,
+                      touched.email &&
+                        errors.email && {
+                          borderBottomColor: "red",
+                        },
+                    ]}
+                  >
+                    <TextInput
+                      placeholder="email"
+                      autoCapitalize="none"
+                      style={{ width: "100%", outline: "none" }}
+                      onChangeText={handleChange("email")}
+                      onBlur={() => {
+                        handleBlur("email");
+                        setIsInputFocused(false);
+                      }}
+                      onFocus={() => setIsInputFocused(true)}
+                      value={values.email}
+                    />
+                    <Image
+                      style={{
+                        width: 18,
+                        height: 13,
+                        opacity: !errors.email && values.email ? 1 : 0.2,
+                      }}
+                      source={require("../assets/images/checkmark.png")}
+                    />
+                  </View>
+                  {touched.email && errors.email && (
+                    <Text style={styled.errorText}>{errors.email}</Text>
+                  )}
                 </View>
-                {touched.email && errors.email && (
-                  <Text style={styled.errorText}>{errors.email}</Text>
-                )}
+
+                {/* Password Field */}
+                <View style={styled.input}>
+                  <Text style={styled.title}>Password</Text>
+                  <View
+                    style={[
+                      styled.inputbox,
+                      touched.password &&
+                        errors.password && {
+                          borderBottomColor: "red",
+                        },
+                    ]}
+                  >
+                    <TextInput
+                      placeholder="password"
+                      secureTextEntry={!showPassword}
+                      style={{ width: "100%", outline: "none" }}
+                      onChangeText={handleChange("password")}
+                      onBlur={() => {
+                        handleBlur("password");
+                        setIsInputFocused(false);
+                      }}
+                      onFocus={() => setIsInputFocused(true)}
+                      value={values.password}
+                    />
+                    <TouchableOpacity
+                      onPress={() => setShowPassword((prev) => !prev)}
+                    >
+                      <Image
+                        style={{ width: 18, height: 13 }}
+                        source={require("../assets/images/eye.png")}
+                      />
+                    </TouchableOpacity>
+                  </View>
+                  {touched.password && errors.password && (
+                    <Text style={styled.errorText}>{errors.password}</Text>
+                  )}
+                </View>
               </View>
 
-              {/* Password Field */}
-              <View style={styled.input}>
-                <Text style={styled.title}>Password</Text>
-                <View
-                  style={[
-                    styled.inputbox,
-                    touched.password &&
-                      errors.password && { borderBottomColor: "red" },
-                  ]}
+              <TouchableOpacity>
+                <Text style={styled.forgot}>Forgot Password?</Text>
+              </TouchableOpacity>
+
+              {/* Spacer view disappears when input is focused */}
+              {!isInputFocused && <View style={{ flex: 1 }} />}
+
+              <View style={styled.button}>
+                <LinearGradient
+                  colors={["#6075FF", "#1433FF"]}
+                  start={{ x: 0.2, y: 0 }}
+                  end={{ x: 1.2, y: 1 }}
+                  style={styled.login}
                 >
-                  <TextInput
-                    placeholder="password"
-                    secureTextEntry={!showPassword}
-                    style={{ width: "100%", outline: "none" }}
-                    onChangeText={handleChange("password")}
-                    onBlur={handleBlur("password")}
-                    value={values.password}
+                  <Image
+                    source={require("../assets/images/logindes.png")}
+                    style={{ position: "absolute", right: 0, top: 0 }}
                   />
                   <TouchableOpacity
-                    onPress={() => setShowPassword((prev) => !prev)}
+                    onPress={handleSubmit}
+                    style={{
+                      width: "100%",
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                    activeOpacity={0.7}
                   >
+                    <Text style={styled.loginText}>log In</Text>
                     <Image
-                      style={{ width: 18, height: 13 }}
-                      source={require("../assets/images/eye.png")}
+                      style={{ width: 20, height: 17 }}
+                      source={require("../assets/images/arrowwhite.png")}
                     />
                   </TouchableOpacity>
-                </View>
-                {touched.password && errors.password && (
-                  <Text style={styled.errorText}>{errors.password}</Text>
-                )}
+                </LinearGradient>
               </View>
-            </View>
-
-            <TouchableOpacity>
-              <Text style={styled.forgot}>Forgot Password?</Text>
-            </TouchableOpacity>
-
-            <View style={{ flex: 1 }} />
-
-            <View style={styled.button}>
-              <LinearGradient
-                colors={["#6075FF", "#1433FF"]}
-                start={{ x: 0.2, y: 0 }}
-                end={{ x: 1.2, y: 1 }}
-                style={styled.login}
-              >
-                <Image
-                  source={require("../assets/images/logindes.png")}
-                  style={{ position: "absolute", right: 0, top: 0 }}
-                />
-                <TouchableOpacity
-                  onPress={handleSubmit}
-                  style={{
-                    width: "100%",
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                  activeOpacity={0.7}
-                >
-                  <Text style={styled.loginText}>Log in</Text>
-                  <Image
-                    style={{ width: 20, height: 17 }}
-                    source={require("../assets/images/arrowwhite.png")}
-                  />
-                </TouchableOpacity>
-              </LinearGradient>
-            </View>
-          </>
-        )}
-      </Formik>
-    </View>
+            </>
+          )}
+        </Formik>
+      </Animated.View>
+    </KeyboardAvoidingView>
   );
 }

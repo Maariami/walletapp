@@ -147,11 +147,11 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     paddingTop: 56,
-    paddingHorizontal: 40,
+    paddingInline: 40,
     backgroundColor: "white",
   },
   background: {
-    width: "100%",
+    width: SCREEN_WIDTH,
     height: 300,
     position: "absolute",
     top: 0,

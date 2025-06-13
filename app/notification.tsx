@@ -1,5 +1,12 @@
 import React from "react";
-import { Image, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 
 import Bar from "./Components/Bar";
 const styled = StyleSheet.create({
@@ -132,176 +139,177 @@ export default function notification() {
       </View>
 
       <Text style={styled.header}>You can check your notifications here.</Text>
-      <View style={styled.profile}>
-        <Image
-          source={require("../assets/images/someone.png")}
-          style={{ width: 45, height: 45 }}
-        />
-        <View style={styled.names}>
-          <Text style={styled.fullname}>Shasha Kolakola</Text>
-          <Text style={styled.status}>Shasha Just sent you $15.</Text>
+      <ScrollView style={{ flex: 1 }}>
+        <View style={styled.profile}>
+          <Image
+            source={require("../assets/images/someone.png")}
+            style={{ width: 45, height: 45 }}
+          />
+          <View style={styled.names}>
+            <Text style={styled.fullname}>Shasha Kolakola</Text>
+            <Text style={styled.status}>Shasha Just sent you $15.</Text>
+          </View>
+          <Image
+            source={require("../assets/images/more.png")}
+            style={{ width: 10, height: 18 }}
+          />
         </View>
-        <Image
-          source={require("../assets/images/more.png")}
-          style={{ width: 10, height: 18 }}
-        />
-      </View>
-      <View style={styled.profile}>
-        <Image
-          source={require("../assets/images/someone.png")}
-          style={{ width: 45, height: 45 }}
-        />
-        <View style={styled.names}>
-          <Text style={styled.fullname}>Shasha Kolakola</Text>
-          <Text style={styled.status}>Shasha Just sent you $15.</Text>
+        <View style={styled.profile}>
+          <Image
+            source={require("../assets/images/someone.png")}
+            style={{ width: 45, height: 45 }}
+          />
+          <View style={styled.names}>
+            <Text style={styled.fullname}>Shasha Kolakola</Text>
+            <Text style={styled.status}>Shasha Just sent you $15.</Text>
+          </View>
+          <Image
+            source={require("../assets/images/more.png")}
+            style={{ width: 10, height: 18 }}
+          />
         </View>
-        <Image
-          source={require("../assets/images/more.png")}
-          style={{ width: 10, height: 18 }}
-        />
-      </View>
-      <View style={styled.profile}>
-        <Image
-          source={require("../assets/images/someone.png")}
-          style={{ width: 45, height: 45 }}
-        />
-        <View style={styled.names}>
-          <Text style={styled.fullname}>Shasha Kolakola</Text>
-          <Text style={styled.status}>Shasha Just sent you $15.</Text>
+        <View style={styled.profile}>
+          <Image
+            source={require("../assets/images/someone.png")}
+            style={{ width: 45, height: 45 }}
+          />
+          <View style={styled.names}>
+            <Text style={styled.fullname}>Shasha Kolakola</Text>
+            <Text style={styled.status}>Shasha Just sent you $15.</Text>
+          </View>
+          <Image
+            source={require("../assets/images/more.png")}
+            style={{ width: 10, height: 18 }}
+          />
         </View>
-        <Image
-          source={require("../assets/images/more.png")}
-          style={{ width: 10, height: 18 }}
-        />
-      </View>
-      <View style={styled.profile}>
-        <Image
-          source={require("../assets/images/someone.png")}
-          style={{ width: 45, height: 45 }}
-        />
-        <View style={styled.names}>
-          <Text style={styled.fullname}>Shasha Kolakola</Text>
-          <Text style={styled.status}>Shasha Just sent you $15.</Text>
+        <View style={styled.profile}>
+          <Image
+            source={require("../assets/images/someone.png")}
+            style={{ width: 45, height: 45 }}
+          />
+          <View style={styled.names}>
+            <Text style={styled.fullname}>Shasha Kolakola</Text>
+            <Text style={styled.status}>Shasha Just sent you $15.</Text>
+          </View>
+          <Image
+            source={require("../assets/images/more.png")}
+            style={{ width: 10, height: 18 }}
+          />
         </View>
-        <Image
-          source={require("../assets/images/more.png")}
-          style={{ width: 10, height: 18 }}
-        />
-      </View>
-      <View style={styled.profile}>
-        <Image
-          source={require("../assets/images/someone.png")}
-          style={{ width: 45, height: 45 }}
-        />
-        <View style={styled.names}>
-          <Text style={styled.fullname}>Shasha Kolakola</Text>
-          <Text style={styled.status}>Shasha Just sent you $15.</Text>
+        <View style={styled.profile}>
+          <Image
+            source={require("../assets/images/someone.png")}
+            style={{ width: 45, height: 45 }}
+          />
+          <View style={styled.names}>
+            <Text style={styled.fullname}>Shasha Kolakola</Text>
+            <Text style={styled.status}>Shasha Just sent you $15.</Text>
+          </View>
+          <Image
+            source={require("../assets/images/more.png")}
+            style={{ width: 10, height: 18 }}
+          />
         </View>
-        <Image
-          source={require("../assets/images/more.png")}
-          style={{ width: 10, height: 18 }}
-        />
-      </View>
-      <View style={styled.profile}>
-        <Image
-          source={require("../assets/images/someone.png")}
-          style={{ width: 45, height: 45 }}
-        />
-        <View style={styled.names}>
-          <Text style={styled.fullname}>Shasha Kolakola</Text>
-          <Text style={styled.status}>Shasha Just sent you $15.</Text>
+        <View style={styled.profile}>
+          <Image
+            source={require("../assets/images/someone.png")}
+            style={{ width: 45, height: 45 }}
+          />
+          <View style={styled.names}>
+            <Text style={styled.fullname}>Shasha Kolakola</Text>
+            <Text style={styled.status}>Shasha Just sent you $15.</Text>
+          </View>
+          <Image
+            source={require("../assets/images/more.png")}
+            style={{ width: 10, height: 18 }}
+          />
         </View>
-        <Image
-          source={require("../assets/images/more.png")}
-          style={{ width: 10, height: 18 }}
-        />
-      </View>
-      <View style={styled.profile}>
-        <Image
-          source={require("../assets/images/someone.png")}
-          style={{ width: 45, height: 45 }}
-        />
-        <View style={styled.names}>
-          <Text style={styled.fullname}>Shasha Kolakola</Text>
-          <Text style={styled.status}>Shasha Just sent you $15.</Text>
+        <View style={styled.profile}>
+          <Image
+            source={require("../assets/images/someone.png")}
+            style={{ width: 45, height: 45 }}
+          />
+          <View style={styled.names}>
+            <Text style={styled.fullname}>Shasha Kolakola</Text>
+            <Text style={styled.status}>Shasha Just sent you $15.</Text>
+          </View>
+          <Image
+            source={require("../assets/images/more.png")}
+            style={{ width: 10, height: 18 }}
+          />
         </View>
-        <Image
-          source={require("../assets/images/more.png")}
-          style={{ width: 10, height: 18 }}
-        />
-      </View>
-      <View style={styled.profile}>
-        <Image
-          source={require("../assets/images/someone.png")}
-          style={{ width: 45, height: 45 }}
-        />
-        <View style={styled.names}>
-          <Text style={styled.fullname}>Shasha Kolakola</Text>
-          <Text style={styled.status}>Shasha Just sent you $15.</Text>
+        <View style={styled.profile}>
+          <Image
+            source={require("../assets/images/someone.png")}
+            style={{ width: 45, height: 45 }}
+          />
+          <View style={styled.names}>
+            <Text style={styled.fullname}>Shasha Kolakola</Text>
+            <Text style={styled.status}>Shasha Just sent you $15.</Text>
+          </View>
+          <Image
+            source={require("../assets/images/more.png")}
+            style={{ width: 10, height: 18 }}
+          />
         </View>
-        <Image
-          source={require("../assets/images/more.png")}
-          style={{ width: 10, height: 18 }}
-        />
-      </View>
-      <View style={styled.profile}>
-        <Image
-          source={require("../assets/images/someone.png")}
-          style={{ width: 45, height: 45 }}
-        />
-        <View style={styled.names}>
-          <Text style={styled.fullname}>Shasha Kolakola</Text>
-          <Text style={styled.status}>Shasha Just sent you $15.</Text>
+        <View style={styled.profile}>
+          <Image
+            source={require("../assets/images/someone.png")}
+            style={{ width: 45, height: 45 }}
+          />
+          <View style={styled.names}>
+            <Text style={styled.fullname}>Shasha Kolakola</Text>
+            <Text style={styled.status}>Shasha Just sent you $15.</Text>
+          </View>
+          <Image
+            source={require("../assets/images/more.png")}
+            style={{ width: 10, height: 18 }}
+          />
         </View>
-        <Image
-          source={require("../assets/images/more.png")}
-          style={{ width: 10, height: 18 }}
-        />
-      </View>
-      <View style={styled.profile}>
-        <Image
-          source={require("../assets/images/someone.png")}
-          style={{ width: 45, height: 45 }}
-        />
-        <View style={styled.names}>
-          <Text style={styled.fullname}>Shasha Kolakola</Text>
-          <Text style={styled.status}>Shasha Just sent you $15.</Text>
+        <View style={styled.profile}>
+          <Image
+            source={require("../assets/images/someone.png")}
+            style={{ width: 45, height: 45 }}
+          />
+          <View style={styled.names}>
+            <Text style={styled.fullname}>Shasha Kolakola</Text>
+            <Text style={styled.status}>Shasha Just sent you $15.</Text>
+          </View>
+          <Image
+            source={require("../assets/images/more.png")}
+            style={{ width: 10, height: 18 }}
+          />
         </View>
-        <Image
-          source={require("../assets/images/more.png")}
-          style={{ width: 10, height: 18 }}
-        />
-      </View>
-      <View style={styled.profile}>
-        <Image
-          source={require("../assets/images/someone.png")}
-          style={{ width: 45, height: 45 }}
-        />
-        <View style={styled.names}>
-          <Text style={styled.fullname}>Shasha Kolakola</Text>
-          <Text style={styled.status}>Shasha Just sent you $15.</Text>
+        <View style={styled.profile}>
+          <Image
+            source={require("../assets/images/someone.png")}
+            style={{ width: 45, height: 45 }}
+          />
+          <View style={styled.names}>
+            <Text style={styled.fullname}>Shasha Kolakola</Text>
+            <Text style={styled.status}>Shasha Just sent you $15.</Text>
+          </View>
+          <Image
+            source={require("../assets/images/more.png")}
+            style={{ width: 10, height: 18 }}
+          />
         </View>
-        <Image
-          source={require("../assets/images/more.png")}
-          style={{ width: 10, height: 18 }}
-        />
-      </View>
-      <View style={styled.profile}>
-        <Image
-          source={require("../assets/images/someone.png")}
-          style={{ width: 45, height: 45 }}
-        />
-        <View style={styled.names}>
-          <Text style={styled.fullname}>Shasha Kolakola</Text>
-          <Text style={styled.status}>Shasha Just sent you $15.</Text>
+        <View style={styled.profile}>
+          <Image
+            source={require("../assets/images/someone.png")}
+            style={{ width: 45, height: 45 }}
+          />
+          <View style={styled.names}>
+            <Text style={styled.fullname}>Shasha Kolakola</Text>
+            <Text style={styled.status}>Shasha Just sent you $15.</Text>
+          </View>
+          <Image
+            source={require("../assets/images/more.png")}
+            style={{ width: 10, height: 18 }}
+          />
         </View>
-        <Image
-          source={require("../assets/images/more.png")}
-          style={{ width: 10, height: 18 }}
-        />
-      </View>
-
-      <Bar type="notification"></Bar>
+      </ScrollView>
+      <Bar type="notification" />
     </View>
   );
 }

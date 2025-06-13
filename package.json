@@ -9,7 +9,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "expo lint",
-    "start:app": "REACT_NATIVE_PACKAGER_HOSTNAME=192.168.1.11 expo start"
+    "start:app": "REACT_NATIVE_PACKAGER_HOSTNAME=192.168.0.203 expo start"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
@@ -41,6 +41,7 @@
     "react-native-screens": "~4.11.1",
     "react-native-web": "~0.20.0",
     "react-native-webview": "13.13.5",
+    "yap": "^0.0.2",
     "yup": "^1.6.1"
   },
   "devDependencies": {
