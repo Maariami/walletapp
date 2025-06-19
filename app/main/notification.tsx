@@ -8,7 +8,6 @@ import {
   View,
 } from "react-native";
 
-import Bar from "./Components/Bar";
 const styled = StyleSheet.create({
   main: {
     position: "relative",
@@ -21,7 +20,6 @@ const styled = StyleSheet.create({
     paddingInline: 35,
     backgroundColor: "rgba(255, 255, 255, 1)",
     overflow: "scroll",
-    paddingBottom: 110,
   },
 
   inputs: {
@@ -125,7 +123,7 @@ export default function notification() {
     <View style={styled.main}>
       <View style={styled.search}>
         <Image
-          source={require("../assets/images/search.png")}
+          source={require("../../assets/images/search.png")}
           style={{ width: 22, height: 21 }}
         />
         <TextInput
@@ -139,10 +137,10 @@ export default function notification() {
       </View>
 
       <Text style={styled.header}>You can check your notifications here.</Text>
-      <ScrollView style={{ flex: 1 }}>
+      <ScrollView>
         <View style={styled.profile}>
           <Image
-            source={require("../assets/images/someone.png")}
+            source={require("../../assets/images/someone.png")}
             style={{ width: 45, height: 45 }}
           />
           <View style={styled.names}>
@@ -150,13 +148,13 @@ export default function notification() {
             <Text style={styled.status}>Shasha Just sent you $15.</Text>
           </View>
           <Image
-            source={require("../assets/images/more.png")}
+            source={require("../../assets/images/more.png")}
             style={{ width: 10, height: 18 }}
           />
         </View>
         <View style={styled.profile}>
           <Image
-            source={require("../assets/images/someone.png")}
+            source={require("../../assets/images/someone.png")}
             style={{ width: 45, height: 45 }}
           />
           <View style={styled.names}>
@@ -164,13 +162,13 @@ export default function notification() {
             <Text style={styled.status}>Shasha Just sent you $15.</Text>
           </View>
           <Image
-            source={require("../assets/images/more.png")}
+            source={require("../../assets/images/more.png")}
             style={{ width: 10, height: 18 }}
           />
         </View>
         <View style={styled.profile}>
           <Image
-            source={require("../assets/images/someone.png")}
+            source={require("../../assets/images/someone.png")}
             style={{ width: 45, height: 45 }}
           />
           <View style={styled.names}>
@@ -178,13 +176,13 @@ export default function notification() {
             <Text style={styled.status}>Shasha Just sent you $15.</Text>
           </View>
           <Image
-            source={require("../assets/images/more.png")}
+            source={require("../../assets/images/more.png")}
             style={{ width: 10, height: 18 }}
           />
         </View>
         <View style={styled.profile}>
           <Image
-            source={require("../assets/images/someone.png")}
+            source={require("../../assets/images/someone.png")}
             style={{ width: 45, height: 45 }}
           />
           <View style={styled.names}>
@@ -192,13 +190,13 @@ export default function notification() {
             <Text style={styled.status}>Shasha Just sent you $15.</Text>
           </View>
           <Image
-            source={require("../assets/images/more.png")}
+            source={require("../../assets/images/more.png")}
             style={{ width: 10, height: 18 }}
           />
         </View>
         <View style={styled.profile}>
           <Image
-            source={require("../assets/images/someone.png")}
+            source={require("../../assets/images/someone.png")}
             style={{ width: 45, height: 45 }}
           />
           <View style={styled.names}>
@@ -206,13 +204,13 @@ export default function notification() {
             <Text style={styled.status}>Shasha Just sent you $15.</Text>
           </View>
           <Image
-            source={require("../assets/images/more.png")}
+            source={require("../../assets/images/more.png")}
             style={{ width: 10, height: 18 }}
           />
         </View>
         <View style={styled.profile}>
           <Image
-            source={require("../assets/images/someone.png")}
+            source={require("../../assets/images/someone.png")}
             style={{ width: 45, height: 45 }}
           />
           <View style={styled.names}>
@@ -220,13 +218,13 @@ export default function notification() {
             <Text style={styled.status}>Shasha Just sent you $15.</Text>
           </View>
           <Image
-            source={require("../assets/images/more.png")}
+            source={require("../../assets/images/more.png")}
             style={{ width: 10, height: 18 }}
           />
         </View>
         <View style={styled.profile}>
           <Image
-            source={require("../assets/images/someone.png")}
+            source={require("../../assets/images/someone.png")}
             style={{ width: 45, height: 45 }}
           />
           <View style={styled.names}>
@@ -234,13 +232,13 @@ export default function notification() {
             <Text style={styled.status}>Shasha Just sent you $15.</Text>
           </View>
           <Image
-            source={require("../assets/images/more.png")}
+            source={require("../../assets/images/more.png")}
             style={{ width: 10, height: 18 }}
           />
         </View>
         <View style={styled.profile}>
           <Image
-            source={require("../assets/images/someone.png")}
+            source={require("../../assets/images/someone.png")}
             style={{ width: 45, height: 45 }}
           />
           <View style={styled.names}>
@@ -248,13 +246,13 @@ export default function notification() {
             <Text style={styled.status}>Shasha Just sent you $15.</Text>
           </View>
           <Image
-            source={require("../assets/images/more.png")}
+            source={require("../../assets/images/more.png")}
             style={{ width: 10, height: 18 }}
           />
         </View>
         <View style={styled.profile}>
           <Image
-            source={require("../assets/images/someone.png")}
+            source={require("../../assets/images/someone.png")}
             style={{ width: 45, height: 45 }}
           />
           <View style={styled.names}>
@@ -262,54 +260,11 @@ export default function notification() {
             <Text style={styled.status}>Shasha Just sent you $15.</Text>
           </View>
           <Image
-            source={require("../assets/images/more.png")}
-            style={{ width: 10, height: 18 }}
-          />
-        </View>
-        <View style={styled.profile}>
-          <Image
-            source={require("../assets/images/someone.png")}
-            style={{ width: 45, height: 45 }}
-          />
-          <View style={styled.names}>
-            <Text style={styled.fullname}>Shasha Kolakola</Text>
-            <Text style={styled.status}>Shasha Just sent you $15.</Text>
-          </View>
-          <Image
-            source={require("../assets/images/more.png")}
-            style={{ width: 10, height: 18 }}
-          />
-        </View>
-        <View style={styled.profile}>
-          <Image
-            source={require("../assets/images/someone.png")}
-            style={{ width: 45, height: 45 }}
-          />
-          <View style={styled.names}>
-            <Text style={styled.fullname}>Shasha Kolakola</Text>
-            <Text style={styled.status}>Shasha Just sent you $15.</Text>
-          </View>
-          <Image
-            source={require("../assets/images/more.png")}
-            style={{ width: 10, height: 18 }}
-          />
-        </View>
-        <View style={styled.profile}>
-          <Image
-            source={require("../assets/images/someone.png")}
-            style={{ width: 45, height: 45 }}
-          />
-          <View style={styled.names}>
-            <Text style={styled.fullname}>Shasha Kolakola</Text>
-            <Text style={styled.status}>Shasha Just sent you $15.</Text>
-          </View>
-          <Image
-            source={require("../assets/images/more.png")}
+            source={require("../../assets/images/more.png")}
             style={{ width: 10, height: 18 }}
           />
         </View>
       </ScrollView>
-      <Bar type="notification" />
     </View>
   );
 }

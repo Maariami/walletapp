@@ -57,6 +57,8 @@ const styled = StyleSheet.create({
     alignSelf: "flex-end",
   },
   loginText: {
+    width: "100%",
+    textAlign: "center",
     fontFamily: "Montserrat",
     fontWeight: 400,
     fontSize: 20,
@@ -68,17 +70,17 @@ export default function second() {
   return (
     <View style={styled.main}>
       <Image
-        source={require("../assets/images/money.png")}
+        source={require("../../assets/images/money.png")}
         style={{ width: 63, height: 61 }}
       />
 
       <Image
-        source={require("../assets/images/Safe.png")}
+        source={require("../../assets/images/Trading.png")}
         style={{ width: 187, height: 202, marginTop: 80, marginBottom: 125 }}
       />
 
       <Image
-        source={require("../assets/images/ball2.png")}
+        source={require("../../assets/images/ball3.png")}
         style={{
           width: 340,
           height: 370,
@@ -88,11 +90,9 @@ export default function second() {
         }}
       />
       <View style={styled.texts}>
-        <Text style={styled.save}>
-          Secure your money for free and get rewards.
-        </Text>
+        <Text style={styled.save}>Enjoy commission-free stock trading.</Text>
         <Text style={styled.sale}>
-          Get the most secure payment app ever and enjoy it.
+          Online investing has never been easier than it is right now.
         </Text>
       </View>
       <LinearGradient
@@ -102,12 +102,12 @@ export default function second() {
         style={styled.login}
       >
         <Image
-          source={require("../assets/images/logindes.png")}
+          source={require("../../assets/images/logindes.png")}
           style={{ position: "absolute", right: 0, top: 0 }}
         />
         <TouchableOpacity
           onPress={() => {
-            router.navigate("/third");
+            router.navigate("/main/wallet");
           }}
           style={{
             width: "100%",
@@ -117,11 +117,7 @@ export default function second() {
           }}
           activeOpacity={0.7}
         >
-          <Text style={styled.loginText}>Next</Text>
-          <Image
-            style={{ width: 20, height: 17 }}
-            source={require("../assets/images/arrowwhite.png")}
-          />
+          <Text style={styled.loginText}>Get Started</Text>
         </TouchableOpacity>
       </LinearGradient>
     </View>

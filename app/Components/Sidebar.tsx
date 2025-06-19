@@ -3,15 +3,16 @@ import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 const styled = StyleSheet.create({
   sidebar: {
-    width: "77%",
+    width: "100%",
     height: "100%",
     backgroundColor: "rgba(255, 255, 255, 1)",
     padding: 32,
     paddingTop: 68,
-    paddingBottom: 80,
+    paddingBottom: 120, // bump this from 80 to 120 to give space under tab bar
     borderTopRightRadius: 16,
     borderBottomRightRadius: 16,
   },
+
   signup: {
     width: "100%",
     height: 72,
@@ -54,11 +55,14 @@ const styled = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     gap: 24,
+    width: "100%",
   },
   option: {
+    width: "100%",
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-between",
   },
   op: {
     color: "rgba(43, 71, 252, 1)",

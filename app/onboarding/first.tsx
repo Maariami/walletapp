@@ -2,6 +2,9 @@ import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+export const options = {
+  animation: "none",
+};
 
 const styled = StyleSheet.create({
   main: {
@@ -68,17 +71,17 @@ export default function first() {
   return (
     <View style={styled.main}>
       <Image
-        source={require("../assets/images/money.png")}
+        source={require("../../assets/images/money.png")}
         style={{ width: 63, height: 61 }}
       />
 
       <Image
-        source={require("../assets/images/Saving.png")}
+        source={require("../../assets/images/Saving.png")}
         style={{ width: 280, height: 202, marginTop: 80, marginBottom: 125 }}
       />
 
       <Image
-        source={require("../assets/images/ball1.png")}
+        source={require("../../assets/images/ball1.png")}
         style={{
           width: 340,
           height: 370,
@@ -100,12 +103,12 @@ export default function first() {
         style={styled.login}
       >
         <Image
-          source={require("../assets/images/logindes.png")}
+          source={require("../../assets/images/logindes.png")}
           style={{ position: "absolute", right: 0, top: 0 }}
         />
         <TouchableOpacity
           onPress={() => {
-            router.navigate("/second");
+            router.navigate("/onboarding/second");
           }}
           style={{
             width: "100%",
@@ -118,7 +121,7 @@ export default function first() {
           <Text style={styled.loginText}>Next</Text>
           <Image
             style={{ width: 20, height: 17 }}
-            source={require("../assets/images/arrowwhite.png")}
+            source={require("../../assets/images/arrowwhite.png")}
           />
         </TouchableOpacity>
       </LinearGradient>

@@ -2,7 +2,6 @@ import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { router } from "expo-router";
-import Bar from "./Components/Bar";
 const styled = StyleSheet.create({
   main: {
     position: "relative",
@@ -101,7 +100,7 @@ export default function profile() {
   return (
     <View style={styled.main}>
       <Image
-        source={require("../assets/images/sider.png")}
+        source={require("../../assets/images/sider.png")}
         style={{
           width: 329,
           height: 317,
@@ -113,7 +112,7 @@ export default function profile() {
       <Text style={styled.header}>Profile</Text>
       <View style={styled.profile}>
         <Image
-          source={require("../assets/images/someone.png")}
+          source={require("../../assets/images/someone.png")}
           style={{ width: 60, height: 60 }}
         />
         <View style={styled.names}>
@@ -180,10 +179,10 @@ export default function profile() {
         <Text style={styled.signupText}>Sign Out</Text>
         <Image
           style={{ width: 25, height: 25 }}
-          source={require("../assets/images/exit.png")}
+          source={require("../../assets/images/exit.png")}
         />
       </TouchableOpacity>
-      <Bar type="profile"></Bar>
+      {/* <Bar type="profile"></Bar> */}
     </View>
   );
 }
