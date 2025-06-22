@@ -1,6 +1,7 @@
 import { router } from "expo-router";
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+
 const styled = StyleSheet.create({
   sidebar: {
     width: "100%",
@@ -8,7 +9,7 @@ const styled = StyleSheet.create({
     backgroundColor: "rgba(255, 255, 255, 1)",
     padding: 32,
     paddingTop: 68,
-    paddingBottom: 120, // bump this from 80 to 120 to give space under tab bar
+    paddingBottom: 120,
     borderTopRightRadius: 16,
     borderBottomRightRadius: 16,
   },
@@ -28,7 +29,7 @@ const styled = StyleSheet.create({
   },
   signupText: {
     fontFamily: "Montserrat",
-    fontWeight: 400,
+    fontWeight: "400",
     fontSize: 23,
     textTransform: "capitalize",
     color: "rgba(39, 67, 253, 1)",
@@ -43,12 +44,12 @@ const styled = StyleSheet.create({
   names: {},
   fullname: {
     fontFamily: "Montserrat",
-    fontWeight: 700,
+    fontWeight: "700",
     fontSize: 19,
   },
   status: {
     fontFamily: "Montserrat",
-    fontWeight: 300,
+    fontWeight: "300",
     fontSize: 18,
   },
   options: {
@@ -68,11 +69,16 @@ const styled = StyleSheet.create({
     color: "rgba(43, 71, 252, 1)",
     fontFamily: "Montserrat",
     fontSize: 18,
-    fontWeight: 400,
+    fontWeight: "400",
     marginLeft: 8,
   },
 });
-const Sidebar = () => {
+
+interface SidebarProps {
+  onClose: () => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ onClose }) => {
   return (
     <View style={styled.sidebar}>
       <View style={styled.profile}>
@@ -86,7 +92,13 @@ const Sidebar = () => {
         </View>
       </View>
       <View style={styled.options}>
-        <TouchableOpacity style={styled.option}>
+        <TouchableOpacity
+          style={styled.option}
+          onPress={() => {
+            onClose();
+            router.navigate("/payments");
+          }}
+        >
           <Image
             source={require("../../assets/images/pay.png")}
             style={{ width: 18, height: 18 }}
@@ -97,7 +109,14 @@ const Sidebar = () => {
             style={{ width: 7, height: 12, marginLeft: "auto" }}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styled.option}>
+
+        <TouchableOpacity
+          onPress={() => {
+            onClose();
+            router.navigate("/transactions");
+          }}
+          style={styled.option}
+        >
           <Image
             source={require("../../assets/images/tran.png")}
             style={{ width: 18, height: 18 }}
@@ -108,7 +127,14 @@ const Sidebar = () => {
             style={{ width: 7, height: 12, marginLeft: "auto" }}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styled.option}>
+
+        <TouchableOpacity
+          onPress={() => {
+            onClose();
+            router.navigate("/mycards");
+          }}
+          style={styled.option}
+        >
           <Image
             source={require("../../assets/images/card.png")}
             style={{ width: 18, height: 18 }}
@@ -119,7 +145,14 @@ const Sidebar = () => {
             style={{ width: 7, height: 12, marginLeft: "auto" }}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styled.option}>
+
+        <TouchableOpacity
+          onPress={() => {
+            onClose();
+            router.navigate("/promotions");
+          }}
+          style={styled.option}
+        >
           <Image
             source={require("../../assets/images/prom.png")}
             style={{ width: 18, height: 18 }}
@@ -130,7 +163,14 @@ const Sidebar = () => {
             style={{ width: 7, height: 12, marginLeft: "auto" }}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styled.option}>
+
+        <TouchableOpacity
+          onPress={() => {
+            onClose();
+            router.navigate("/savings");
+          }}
+          style={styled.option}
+        >
           <Image
             source={require("../../assets/images/save.png")}
             style={{ width: 18, height: 18 }}
@@ -142,9 +182,11 @@ const Sidebar = () => {
           />
         </TouchableOpacity>
       </View>
+
       <TouchableOpacity
         style={styled.signup}
         onPress={() => {
+          onClose();
           router.navigate("/");
         }}
       >

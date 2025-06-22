@@ -67,7 +67,7 @@ const Wallet = () => {
             { transform: [{ translateX: sidebarTranslateX }] },
           ]}
         >
-          <Sidebar />
+          <Sidebar onClose={closeSidebar} />
         </Animated.View>
       </Modal>
 

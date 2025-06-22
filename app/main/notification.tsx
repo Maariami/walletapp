@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from "react-native";
 
@@ -138,7 +139,7 @@ export default function notification() {
 
       <Text style={styled.header}>You can check your notifications here.</Text>
       <ScrollView>
-        <View style={styled.profile}>
+        <TouchableOpacity style={styled.profile}>
           <Image
             source={require("../../assets/images/someone.png")}
             style={{ width: 45, height: 45 }}
@@ -151,8 +152,8 @@ export default function notification() {
             source={require("../../assets/images/more.png")}
             style={{ width: 10, height: 18 }}
           />
-        </View>
-        <View style={styled.profile}>
+        </TouchableOpacity>{" "}
+        <TouchableOpacity style={styled.profile}>
           <Image
             source={require("../../assets/images/someone.png")}
             style={{ width: 45, height: 45 }}
@@ -165,8 +166,8 @@ export default function notification() {
             source={require("../../assets/images/more.png")}
             style={{ width: 10, height: 18 }}
           />
-        </View>
-        <View style={styled.profile}>
+        </TouchableOpacity>{" "}
+        <TouchableOpacity style={styled.profile}>
           <Image
             source={require("../../assets/images/someone.png")}
             style={{ width: 45, height: 45 }}
@@ -179,8 +180,8 @@ export default function notification() {
             source={require("../../assets/images/more.png")}
             style={{ width: 10, height: 18 }}
           />
-        </View>
-        <View style={styled.profile}>
+        </TouchableOpacity>{" "}
+        <TouchableOpacity style={styled.profile}>
           <Image
             source={require("../../assets/images/someone.png")}
             style={{ width: 45, height: 45 }}
@@ -193,8 +194,8 @@ export default function notification() {
             source={require("../../assets/images/more.png")}
             style={{ width: 10, height: 18 }}
           />
-        </View>
-        <View style={styled.profile}>
+        </TouchableOpacity>{" "}
+        <TouchableOpacity style={styled.profile}>
           <Image
             source={require("../../assets/images/someone.png")}
             style={{ width: 45, height: 45 }}
@@ -207,8 +208,8 @@ export default function notification() {
             source={require("../../assets/images/more.png")}
             style={{ width: 10, height: 18 }}
           />
-        </View>
-        <View style={styled.profile}>
+        </TouchableOpacity>{" "}
+        <TouchableOpacity style={styled.profile}>
           <Image
             source={require("../../assets/images/someone.png")}
             style={{ width: 45, height: 45 }}
@@ -221,8 +222,8 @@ export default function notification() {
             source={require("../../assets/images/more.png")}
             style={{ width: 10, height: 18 }}
           />
-        </View>
-        <View style={styled.profile}>
+        </TouchableOpacity>{" "}
+        <TouchableOpacity style={styled.profile}>
           <Image
             source={require("../../assets/images/someone.png")}
             style={{ width: 45, height: 45 }}
@@ -235,8 +236,8 @@ export default function notification() {
             source={require("../../assets/images/more.png")}
             style={{ width: 10, height: 18 }}
           />
-        </View>
-        <View style={styled.profile}>
+        </TouchableOpacity>{" "}
+        <TouchableOpacity style={styled.profile}>
           <Image
             source={require("../../assets/images/someone.png")}
             style={{ width: 45, height: 45 }}
@@ -249,8 +250,8 @@ export default function notification() {
             source={require("../../assets/images/more.png")}
             style={{ width: 10, height: 18 }}
           />
-        </View>
-        <View style={styled.profile}>
+        </TouchableOpacity>{" "}
+        <TouchableOpacity style={styled.profile}>
           <Image
             source={require("../../assets/images/someone.png")}
             style={{ width: 45, height: 45 }}
@@ -263,7 +264,21 @@ export default function notification() {
             source={require("../../assets/images/more.png")}
             style={{ width: 10, height: 18 }}
           />
-        </View>
+        </TouchableOpacity>{" "}
+        <TouchableOpacity style={styled.profile}>
+          <Image
+            source={require("../../assets/images/someone.png")}
+            style={{ width: 45, height: 45 }}
+          />
+          <View style={styled.names}>
+            <Text style={styled.fullname}>Shasha Kolakola</Text>
+            <Text style={styled.status}>Shasha Just sent you $15.</Text>
+          </View>
+          <Image
+            source={require("../../assets/images/more.png")}
+            style={{ width: 10, height: 18 }}
+          />
+        </TouchableOpacity>
       </ScrollView>
     </View>
   );

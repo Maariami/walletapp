@@ -1,4 +1,5 @@
 import { LinearGradient } from "expo-linear-gradient";
+import { router } from "expo-router";
 import React from "react";
 import {
   Image,
@@ -154,7 +155,12 @@ export default function createprofile() {
         </View>
         <View style={{ flex: 1 }} />
         <View style={styled.button}>
-          <TouchableOpacity style={styled.signup} onPress={() => {}}>
+          <TouchableOpacity
+            style={styled.signup}
+            onPress={() => {
+              router.navigate("/main/wallet");
+            }}
+          >
             <Text style={styled.signupText}>complete</Text>
             <Image
               style={{ width: 18, height: 13 }}

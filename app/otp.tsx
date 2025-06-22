@@ -1,5 +1,5 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import React, { useRef, useState } from "react";
 import {
   Dimensions,
@@ -68,9 +68,6 @@ const styled = StyleSheet.create({
     textTransform: "capitalize",
     color: "white",
   },
-  button: {
-    marginBottom: 75,
-  },
 
   otpContainer: {
     flexDirection: "row",
@@ -91,8 +88,12 @@ const styled = StyleSheet.create({
 });
 
 export default function otp() {
+  const { phone } = useLocalSearchParams();
+
   const [otp, setOtp] = useState(["", "", "", ""]);
   const inputs = useRef<TextInput[]>([]);
+
+  const isOtpComplete = otp.every((digit) => digit !== "");
 
   const handleChange = (text: string, index: number) => {
     const newOtp = [...otp];
@@ -127,7 +128,7 @@ export default function otp() {
           <Text></Text>
           <Text style={styled.parag}>
             Enter the OTP sent to{" "}
-            <Text style={{ fontWeight: "700" }}>+995 555 551 452</Text>
+            <Text style={{ fontWeight: "700" }}>{phone}</Text>
           </Text>
         </View>
 
@@ -155,7 +156,7 @@ export default function otp() {
         </Text>
       </View>
 
-      <View style={styled.button}>
+      <View style={{ marginBottom: 75, opacity: isOtpComplete ? 1 : 0.5 }}>
         <LinearGradient
           colors={["#6075FF", "#1433FF"]}
           start={{ x: 0.2, y: 0 }}
@@ -179,8 +180,9 @@ export default function otp() {
           <TouchableOpacity
             onPress={() => {
               console.log("OTP Entered:", otp.join(""));
-              router.navigate("/otp");
+              router.navigate("/createprofile");
             }}
+            disabled={!isOtpComplete}
             style={{
               marginHorizontal: 40,
               flexDirection: "row",
