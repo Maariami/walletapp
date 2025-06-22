@@ -236,7 +236,11 @@ export default function Login() {
                 </View>
               </View>
 
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  router.navigate({ pathname: "/verification" });
+                }}
+              >
                 <Text style={styled.forgot}>Forgot Password?</Text>
               </TouchableOpacity>
 

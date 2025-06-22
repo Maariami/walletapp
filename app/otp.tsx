@@ -4,10 +4,12 @@ import React, { useRef, useState } from "react";
 import {
   Dimensions,
   Image,
+  Keyboard,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
 } from "react-native";
 
@@ -68,7 +70,6 @@ const styled = StyleSheet.create({
     textTransform: "capitalize",
     color: "white",
   },
-
   otpContainer: {
     flexDirection: "row",
     justifyContent: "center",
@@ -87,9 +88,8 @@ const styled = StyleSheet.create({
   },
 });
 
-export default function otp() {
+export default function OtpScreen() {
   const { phone } = useLocalSearchParams();
-
   const [otp, setOtp] = useState(["", "", "", ""]);
   const inputs = useRef<TextInput[]>([]);
 
@@ -103,6 +103,10 @@ export default function otp() {
     if (text && index < inputs.current.length - 1) {
       inputs.current[index + 1]?.focus();
     }
+
+    if (newOtp.every((d) => d !== "")) {
+      Keyboard.dismiss();
+    }
   };
 
   const handleKeyPress = (e: any, index: number) => {
@@ -112,75 +116,56 @@ export default function otp() {
   };
 
   return (
-    <View style={styled.main}>
-      <View>
-        <Image
-          style={{
-            width: 257,
-            height: 249,
-            marginTop: 56,
-            alignSelf: "center",
-          }}
-          source={require("../assets/images/OTP.png")}
-        />
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styled.main}>
+        <View>
+          <Image
+            style={{
+              width: 257,
+              height: 249,
+              marginTop: 56,
+              alignSelf: "center",
+            }}
+            source={require("../assets/images/OTP.png")}
+          />
+          <View style={styled.body}>
+            <Text style={styled.header}>OTP Verification</Text>
+            <Text></Text>
+            <Text style={styled.parag}>
+              Enter the OTP sent to{" "}
+              <Text style={{ fontWeight: "700" }}>{phone}</Text>
+            </Text>
+          </View>
+
+          <View style={styled.otpContainer}>
+            {otp.map((digit, index) => (
+              <TextInput
+                key={index}
+                ref={(el) => (inputs.current[index] = el!)}
+                style={styled.otpInput}
+                value={digit}
+                onChangeText={(text) => handleChange(text.slice(-1), index)}
+                onKeyPress={(e) => handleKeyPress(e, index)}
+                keyboardType="number-pad"
+                maxLength={1}
+                returnKeyType="done"
+              />
+            ))}
+          </View>
+        </View>
+
         <View style={styled.body}>
-          <Text style={styled.header}>OTP Verification</Text>
-          <Text></Text>
           <Text style={styled.parag}>
-            Enter the OTP sent to{" "}
-            <Text style={{ fontWeight: "700" }}>{phone}</Text>
+            Didn’t you receive the OTP?{" "}
+            <Text style={{ color: "rgba(39, 67, 253, 1)" }}>Resend OTP</Text>
           </Text>
         </View>
 
-        <View style={styled.otpContainer}>
-          {otp.map((digit, index) => (
-            <TextInput
-              key={index}
-              ref={(el) => (inputs.current[index] = el!)}
-              style={styled.otpInput}
-              value={digit}
-              onChangeText={(text) => handleChange(text.slice(-1), index)}
-              onKeyPress={(e) => handleKeyPress(e, index)}
-              keyboardType="number-pad"
-              maxLength={1}
-              returnKeyType="done"
-            />
-          ))}
-        </View>
-      </View>
-
-      <View style={styled.body}>
-        <Text style={styled.parag}>
-          Didn’t you receive the OTP?{" "}
-          <Text style={{ color: "rgba(39, 67, 253, 1)" }}>Resend OTP</Text>
-        </Text>
-      </View>
-
-      <View style={{ marginBottom: 75, opacity: isOtpComplete ? 1 : 0.5 }}>
-        <LinearGradient
-          colors={["#6075FF", "#1433FF"]}
-          start={{ x: 0.2, y: 0 }}
-          end={{ x: 1.2, y: 1 }}
-          style={styled.login}
-        >
-          <Image
-            source={require("../assets/images/logindes.png")}
-            style={{ position: "absolute", right: 0, top: 0 }}
-          />
-          <Image
-            source={require("../assets/images/lefty.png")}
-            style={{
-              position: "absolute",
-              left: 0,
-              top: 0,
-              width: 142,
-              height: 52,
-            }}
-          />
+        <View style={{ marginBottom: 75, opacity: isOtpComplete ? 1 : 0.5 }}>
           <TouchableOpacity
             onPress={() => {
               console.log("OTP Entered:", otp.join(""));
-              router.navigate("/createprofile");
+              router.navigate("/main/wallet");
             }}
             disabled={!isOtpComplete}
             style={{
@@ -191,10 +176,32 @@ export default function otp() {
             }}
             activeOpacity={0.7}
           >
-            <Text style={styled.loginText}>Verify</Text>
+            <LinearGradient
+              colors={["#6075FF", "#1433FF"]}
+              start={{ x: 0.2, y: 0 }}
+              end={{ x: 1.2, y: 1 }}
+              style={styled.login}
+            >
+              <Image
+                source={require("../assets/images/logindes.png")}
+                style={{ position: "absolute", right: 0, top: 0 }}
+              />
+              <Image
+                source={require("../assets/images/lefty.png")}
+                style={{
+                  position: "absolute",
+                  left: 0,
+                  top: 0,
+                  width: 142,
+                  height: 52,
+                }}
+              />
+
+              <Text style={styled.loginText}>Verify</Text>
+            </LinearGradient>{" "}
           </TouchableOpacity>
-        </LinearGradient>
+        </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 }

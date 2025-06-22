@@ -5,10 +5,12 @@ import React from "react";
 import {
   Dimensions,
   Image,
+  Keyboard,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
 } from "react-native";
 import * as Yup from "yup";
@@ -79,10 +81,9 @@ const styled = StyleSheet.create({
   button: {
     marginBottom: 75,
   },
-
   input: {
     width: screenWidth,
-    paddingInline: 35,
+    paddingHorizontal: 35,
     display: "flex",
     flexDirection: "column",
     gap: 40,
@@ -98,7 +99,7 @@ const styled = StyleSheet.create({
   },
 });
 
-export default function verification() {
+export default function Verification() {
   return (
     <Formik
       initialValues={{ phone: "" }}
@@ -114,71 +115,81 @@ export default function verification() {
       }}
     >
       {({ handleChange, handleSubmit, values, errors, touched }) => (
-        <View style={styled.main}>
-          <View>
-            <Image
-              style={{
-                width: 257,
-                height: 249,
-                marginTop: 56,
-                alignSelf: "center",
-              }}
-              source={require("../assets/images/OTP.png")}
-            />
-            <View style={styled.body}>
-              <Text style={styled.header}>OTP Verification</Text>
-              <Text></Text>
-              <Text style={styled.parag}>
-                We will send you a one-time password to this mobile number.
-              </Text>
-              <Text style={styled.title}>Enter mobile number</Text>
-            </View>
-
-            <View style={styled.input}>
-              <View style={styled.inputbox}>
-                <TextInput
-                  style={{ outline: "none", textAlign: "center" }}
-                  keyboardType="phone-pad"
-                  value={values.phone}
-                  onChangeText={handleChange("phone")}
-                  maxLength={15}
-                />
-              </View>
-              {touched.phone && errors.phone && (
-                <Text style={{ color: "red", fontSize: 12, marginTop: 4 }}>
-                  {errors.phone}
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styled.main}>
+            <View>
+              <Image
+                style={{
+                  width: 257,
+                  height: 249,
+                  marginTop: 56,
+                  alignSelf: "center",
+                }}
+                source={require("../assets/images/OTP.png")}
+              />
+              <View style={styled.body}>
+                <Text style={styled.header}>OTP Verification</Text>
+                <Text></Text>
+                <Text style={styled.parag}>
+                  We will send you a one-time password to this mobile number.
                 </Text>
-              )}
+                <Text style={styled.title}>Enter mobile number</Text>
+              </View>
+
+              <View style={styled.input}>
+                <View style={styled.inputbox}>
+                  <TextInput
+                    style={{
+                      textAlign: "center",
+                      width: "100%",
+                    }}
+                    keyboardType="phone-pad"
+                    value={values.phone}
+                    onChangeText={handleChange("phone")}
+                    maxLength={15}
+                    placeholderTextColor="#B5B5B5"
+                    returnKeyType="done"
+                  />
+                </View>
+                {touched.phone && errors.phone && (
+                  <Text style={{ color: "red", fontSize: 12, marginTop: 4 }}>
+                    {errors.phone}
+                  </Text>
+                )}
+              </View>
+            </View>
+
+            <View style={styled.button}>
+              <TouchableOpacity
+                onPress={handleSubmit as any}
+                activeOpacity={0.7}
+              >
+                <LinearGradient
+                  colors={["#6075FF", "#1433FF"]}
+                  start={{ x: 0.2, y: 0 }}
+                  end={{ x: 1.2, y: 1 }}
+                  style={styled.login}
+                >
+                  <Image
+                    source={require("../assets/images/logindes.png")}
+                    style={{ position: "absolute", right: 0, top: 0 }}
+                  />
+                  <Image
+                    source={require("../assets/images/lefty.png")}
+                    style={{
+                      position: "absolute",
+                      left: 0,
+                      top: 0,
+                      width: 142,
+                      height: 52,
+                    }}
+                  />
+                  <Text style={styled.loginText}>Get OTP</Text>
+                </LinearGradient>
+              </TouchableOpacity>
             </View>
           </View>
-
-          <View style={styled.button}>
-            <TouchableOpacity onPress={handleSubmit as any} activeOpacity={0.7}>
-              <LinearGradient
-                colors={["#6075FF", "#1433FF"]}
-                start={{ x: 0.2, y: 0 }}
-                end={{ x: 1.2, y: 1 }}
-                style={styled.login}
-              >
-                <Image
-                  source={require("../assets/images/logindes.png")}
-                  style={{ position: "absolute", right: 0, top: 0 }}
-                />
-                <Image
-                  source={require("../assets/images/lefty.png")}
-                  style={{
-                    position: "absolute",
-                    left: 0,
-                    top: 0,
-                    width: 142,
-                    height: 52,
-                  }}
-                />
-                <Text style={styled.loginText}>Get OTP</Text>
-              </LinearGradient>
-            </TouchableOpacity>
-          </View>
-        </View>
+        </TouchableWithoutFeedback>
       )}
     </Formik>
   );

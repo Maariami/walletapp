@@ -146,7 +146,7 @@ export default function Signup() {
           validateOnChange
           validateOnBlur
           onSubmit={() => {
-            router.navigate("/onboarding/first");
+            router.navigate("/createprofile");
           }}
         >
           {({
@@ -236,7 +236,9 @@ export default function Signup() {
                 </View>
               </View>
 
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => router.navigate("/verification")}
+              >
                 <Text style={styled.forgot}>Forgot Password?</Text>
               </TouchableOpacity>
 

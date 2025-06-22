@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "",
+    "name": "walletapp",
     "slug": "walletapp",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -9,14 +9,18 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "NSPhotoLibraryUsageDescription": "We need access to your photos to select a profile image.",
+      "bundleIdentifier": "com.anonymous.walletapp"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#ffffff",
+        "permissions": ["READ_MEDIA_IMAGES", "READ_MEDIA_IMAGES"]
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.anonymous.walletapp"
     },
     "web": {
       "bundler": "metro",
