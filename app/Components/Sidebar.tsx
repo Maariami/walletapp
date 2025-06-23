@@ -131,7 +131,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onClose }) => {
         <TouchableOpacity
           onPress={() => {
             onClose();
-            router.navigate("/mycards");
+            router.navigate("/cards");
           }}
           style={styled.option}
         >
