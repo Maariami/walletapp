@@ -10,17 +10,19 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "NSPhotoLibraryUsageDescription": "We need access to your photos to select a profile image.",
-      "bundleIdentifier": "com.anonymous.walletapp"
+      "bundleIdentifier": "com.anonymous.walletapp",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "We need access to your photos to select a profile image."
+      }
     },
     "android": {
+      "package": "com.anonymous.walletapp",
+      "permissions": ["READ_MEDIA_IMAGES"],
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff",
-        "permissions": ["READ_MEDIA_IMAGES", "READ_MEDIA_IMAGES"]
+        "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true,
-      "package": "com.anonymous.walletapp"
+      "edgeToEdgeEnabled": true
     },
     "web": {
       "bundler": "metro",

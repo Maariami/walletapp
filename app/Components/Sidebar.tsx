@@ -96,7 +96,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onClose }) => {
           style={styled.option}
           onPress={() => {
             onClose();
-            router.navigate("/payments");
+            router.navigate("/transfer");
           }}
         >
           <Image
@@ -146,13 +146,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onClose }) => {
           />
         </TouchableOpacity>
 
-        <TouchableOpacity
-          onPress={() => {
-            onClose();
-            router.navigate("/promotions");
-          }}
-          style={styled.option}
-        >
+        <TouchableOpacity onPress={() => {}} style={styled.option}>
           <Image
             source={require("../../assets/images/prom.png")}
             style={{ width: 18, height: 18 }}
@@ -164,13 +158,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onClose }) => {
           />
         </TouchableOpacity>
 
-        <TouchableOpacity
-          onPress={() => {
-            onClose();
-            router.navigate("/savings");
-          }}
-          style={styled.option}
-        >
+        <TouchableOpacity onPress={() => {}} style={styled.option}>
           <Image
             source={require("../../assets/images/save.png")}
             style={{ width: 18, height: 18 }}

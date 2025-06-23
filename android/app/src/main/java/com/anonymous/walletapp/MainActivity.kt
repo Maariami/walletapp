@@ -1,4 +1,4 @@
-package com.app
+package com.anonymous.walletapp
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

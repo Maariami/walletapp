@@ -1,13 +1,14 @@
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { LinearGradient } from "expo-linear-gradient";
 import * as MediaLibrary from "expo-media-library";
-import { useNavigation } from "expo-router";
+import { router, useNavigation } from "expo-router";
 import { Formik } from "formik";
 import React, { useState } from "react";
 import {
   Image,
   Keyboard,
   Platform,
+  Pressable,
   StyleSheet,
   Text,
   TextInput,
@@ -24,7 +25,7 @@ const styled = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     paddingTop: 24,
-    paddingInline: 30,
+    paddingHorizontal: 30,
   },
   inputs: {
     marginTop: 40,
@@ -35,7 +36,7 @@ const styled = StyleSheet.create({
   },
   input: {
     width: "100%",
-    paddingInline: 5,
+    paddingHorizontal: 5,
   },
   title: {
     color: "rgba(128, 224, 255, 1)",
@@ -103,6 +104,9 @@ export default function CreateProfile() {
   const [imageUri, setImageUri] = useState<string | null>(null);
   const [datePickerVisible, setDatePickerVisible] = useState(false);
 
+  // Store selected date separately to keep consistent value shown in picker
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+
   const handleImageUpload = async () => {
     const { status, granted } = await MediaLibrary.requestPermissionsAsync();
     if (!granted) {
@@ -126,7 +130,12 @@ export default function CreateProfile() {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    <TouchableWithoutFeedback
+      onPress={() => {
+        Keyboard.dismiss();
+        setDatePickerVisible(false); // Hide picker when clicking anywhere outside
+      }}
+    >
       <View style={{ width: "100%", height: "100%" }}>
         <LinearGradient
           colors={["#4950F9", "#1937FE"]}
@@ -223,43 +232,45 @@ export default function CreateProfile() {
                   {/* Date of Birth */}
                   <View style={styled.input}>
                     <Text style={styled.title}>Date of birth</Text>
-                    <TouchableOpacity
+                    <Pressable
                       onPress={() => setDatePickerVisible(true)}
-                      activeOpacity={0.8}
+                      style={styled.inputbox}
                     >
-                      <View style={styled.inputbox}>
-                        <Text
-                          style={{
-                            color: values.dob
-                              ? "rgba(128, 224, 255, 1)"
-                              : "rgba(180, 220, 255, 0.5)",
-                          }}
-                        >
-                          {values.dob || "Your date of birth"}
-                        </Text>
-                        {!errors.dob && touched.dob && (
-                          <Image
-                            source={require("../assets/images/checkmark.png")}
-                            style={{ width: 18, height: 13 }}
-                          />
-                        )}
-                      </View>
-                    </TouchableOpacity>
+                      <Text
+                        style={{
+                          color: values.dob
+                            ? "rgba(128, 224, 255, 1)"
+                            : "rgba(180, 220, 255, 0.5)",
+                        }}
+                      >
+                        {values.dob || "Your date of birth"}
+                      </Text>
+                      {!errors.dob && touched.dob && (
+                        <Image
+                          source={require("../assets/images/checkmark.png")}
+                          style={{ width: 18, height: 13 }}
+                        />
+                      )}
+                    </Pressable>
 
                     {datePickerVisible && (
                       <DateTimePicker
                         mode="date"
                         display={Platform.OS === "ios" ? "spinner" : "default"}
-                        value={new Date()}
-                        onChange={(event, selectedDate) => {
-                          if (event.type !== "dismissed") {
-                            const formatted = selectedDate
-                              ?.toLocaleDateString("en-GB")
+                        value={selectedDate || new Date()} // Use selectedDate or fallback
+                        onChange={(event, pickedDate) => {
+                          if (event.type === "dismissed") {
+                            // User dismissed without picking
+                            setDatePickerVisible(false);
+                            return;
+                          }
+                          if (pickedDate) {
+                            setSelectedDate(pickedDate);
+                            const formatted = pickedDate
+                              .toLocaleDateString("en-GB")
                               .split("/")
                               .join("-");
-                            if (formatted) {
-                              setFieldValue("dob", formatted);
-                            }
+                            setFieldValue("dob", formatted);
                           }
                           if (Platform.OS !== "ios") {
                             setDatePickerVisible(false);
@@ -275,18 +286,20 @@ export default function CreateProfile() {
                 <View style={styled.button}>
                   <TouchableOpacity
                     style={styled.signup}
-                    onPress={handleSubmit}
-                    disabled={!isValid || !imageUri}
-                    activeOpacity={isValid && imageUri ? 0.8 : 1}
+                    onPress={() => {
+                      router.navigate("/onboarding/first");
+                      handleSubmit();
+                    }}
+                    disabled={!isValid} // image is optional, so just check form validity
+                    activeOpacity={isValid ? 0.8 : 1}
                   >
                     <Text
                       style={[
                         styled.signupText,
                         {
-                          color:
-                            isValid && imageUri
-                              ? "rgba(39, 67, 253, 1)"
-                              : "rgba(200, 200, 200, 1)",
+                          color: isValid
+                            ? "rgba(39, 67, 253, 1)"
+                            : "rgba(200, 200, 200, 1)",
                         },
                       ]}
                     >
@@ -295,9 +308,9 @@ export default function CreateProfile() {
                     <Image
                       style={{ width: 18, height: 13 }}
                       source={
-                        isValid && imageUri
-                          ? require("../assets/images/checkblue.png")
-                          : require("../assets/images/checkwhite.png")
+                        isValid
+                          ? require("../assets/images/checkblue.png") // <== this should be blue check when valid
+                          : require("../assets/images/checkwhite.png") // <== this should be white/grey when invalid
                       }
                     />
                   </TouchableOpacity>
