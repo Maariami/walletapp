@@ -146,7 +146,7 @@ export default function Login() {
           validateOnChange
           validateOnBlur
           onSubmit={() => {
-            router.navigate("/onboarding/first");
+            router.navigate("/first");
           }}
         >
           {({

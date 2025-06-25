@@ -287,7 +287,7 @@ export default function CreateProfile() {
                   <TouchableOpacity
                     style={styled.signup}
                     onPress={() => {
-                      router.navigate("/onboarding/first");
+                      router.navigate("/first");
                       handleSubmit();
                     }}
                     disabled={!isValid} // image is optional, so just check form validity
